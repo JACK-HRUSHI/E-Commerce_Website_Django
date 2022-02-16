@@ -1,0 +1,1 @@
+This in my static file in blog.
