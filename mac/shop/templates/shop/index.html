@@ -1,4 +1,4 @@
-  <!--INHERITANCE DONE FOR basic.html FILE-->
+<!--INHERITANCE DONE FOR basic.html FILE-->
 {% extends 'shop/basic.html' %}
 
 <!-- TITLE OF ABOUT PAGE-->
@@ -11,106 +11,115 @@ My Awesome Cart
 <!-- TITLE OF ABOUT PAGE-->
 {% block css %}
 
-     .col-md-3{
-        display: inline-block;
-        margin-left: -4px;
+.col-md-3{
+display: inline-block;
+margin-left: -4px;
 
-     }
+}
 
-      .col-md-3 img{
-         max-width: 227px;
-         height: 242px;
-      }
+.col-md-3 img{
+max-width: 227px;
+height: 242px;
+}
 
-      body .carousel-indicator li{
-         background-color: blue;
-      }
+body .carousel-indicator li{
+background-color: blue;
+}
 
-       body .carousel-indicators{
-         bottom: 0;
-      }
-      .carousel-indicators .active{
-         background-color: blue;
-      }
+body .carousel-indicators{
+bottom: 0;
+}
+.carousel-indicators .active{
+background-color: blue;
+}
 
-      body .carousel-control-prev-icon,
-      body .carousel-control-next-icon{
-         background-color: grey;
-      }
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: grey;
+}
 
-      .carousel-control-prev,
-      .carousel-control-next{
-         top: auto;
-         bottom: auto;
-         padding-top: 170px;
-      }
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 170px;
+}
 
-      body .no-padding{
-         padding-left: 0;
-         padding-right: 0
-      }
+body .no-padding{
+padding-left: 0;
+padding-right: 0
+}
 
 {% endblock %}
 
 <!-- BODY OF ABOUT PAGE-->
 {% block body %}
-    {% load static %}
+{% load static %}
 
 <div class="container my-2  ">
 
-{% for product, range, nSlides in allProds %}
+    {% for product, range, nSlides in allProds %}
 
     <h1 class="my-3"> {{product.0.category }} </h1>
 
     <div class="row">
 
-      <div id="demo{{forloop.counter}}" class="col carousel slide mx-5" data-bs-ride="carousel">
+        <div id="demo{{forloop.counter}}" class="col carousel slide mx-5" data-bs-ride="carousel">
             <div class="carousel-inner ">
 
-                  <div class="carousel-item active">
+                <div class="carousel-item active">
 
-                        {% for i in product %}
+                    {% for i in product %}
 
-                                        <div class="col-xs-3 col-sm-3 col-md-3  ">
-                                          <div class="card" style="width: 18rem;">
-                                            <img src="/media/{{i.image}}"  class="card-img-top" alt="...">
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{i.product_name}}</h5>
-                                              <p class="card-text">{{i.desc|slice:"0:23"}}...</p>
-                                              <button id="atc{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
-                                              <a href="/shop/prodview/{{i.id}}"> <button id="qv{{i.id}}" class="btn btn-primary cart">Quick View</button> </a>
-                                            </div>
-                                          </div>
-                                        </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3  ">
+                        <div class="card align-items-center" style="width: 18rem;">
+                            <img src="/media/{{i.image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.product_name}}</h5>
+                                <p class="card-text">{{i.desc|slice:"0:23"}}...</p>
 
-                                        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
-                  </div>                     <div class="carousel-item">
-                                        {% endif%}
+                                <span id="divpr{{i.id}}" class="divpr">
+                                    <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
+                                </span>
 
-                        {% endfor %}
-                                             </div>
+                                <a href="/shop/prodview/{{i.id}}">
+                                    <button id="qv{{i.id}}" class="btn btn-primary cart">QuickView</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif%}
+
+                    {% endfor %}
+                </div>
 
             </div>
-      </div>
+        </div>
 
 
-      <!--  Previous Button   -->
+        <!--  Previous Button   -->
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#demo{{forloop.counter}}" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo{{forloop.counter}}"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
 
-      <!--  Next Button    -->
+        <!--  Next Button    -->
 
-            <button class="carousel-control-next" type="button" data-bs-target="#demo{{forloop.counter}}" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo{{forloop.counter}}"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
 
-</div>
+    </div>
 
-{% endfor %}
+    {% endfor %}
 
 </div>
 
@@ -120,6 +129,7 @@ My Awesome Cart
 
 <script>
 
+    // Find out the cart items in localstorage
     if(localStorage.getItem('cart') == null){
         var cart = {};
     }
@@ -127,11 +137,14 @@ My Awesome Cart
         cart = JSON.parse(localStorage.getItem('cart'));
 
         document.getElementById('cart').innerHTML = Object.keys(cart).length;
+
+        updateCart(cart);
     }
 
+    // If add to cart is clicked, add/increamnet the item
     $('.cart').click(function(){
 
-        var idstr = this.id.toString();
+        var idstr = this.id.toString(); // It contains product id as, pr1, pr2, pr3 & so on
 
         if(cart[idstr] != undefined){
             cart[idstr] = cart[idstr] + 1;
@@ -140,13 +153,12 @@ My Awesome Cart
             cart[idstr] = 1;
         }
 
-        console.log(cart);
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        updateCart(cart);
+        // console.log(cart);
 
     });
 
+    // Add popover to cart
     document.addEventListener("DOMContentLoaded", function(){
 
         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
@@ -155,6 +167,51 @@ My Awesome Cart
         });
 
     });
+
+    // By this function we are replacing the button which is inside span tag of id "divpr{{i.id}}"
+    function updateCart(cart){
+
+        // console.log(cart);
+
+        for(var item in cart){
+            document.getElementById('div'+item).innerHTML = "<button id='minus" + item+ "' class='btn btn-primary minus'>-</button> <span id='val" + item+ "'>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'>+</button>";
+
+            // We only write id as " 'div'+item " not " 'divpr'+item ". Since, item id is come as pr1, pr2, pr3 & ...
+            // So in LHS " 'div'+item " is get replaced as divpr1, divpr2, divpr3 & ...
+            // Which will result same as span tag's id "divpr{{i.id}}"
+
+        }
+
+        // Updating values in localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+
+    }
+
+    // If plus or minus button is clicked, change the cart as well as the display value
+    $('.divpr').on("click", "button.minus", function(){
+
+        // console.log("Minus clicked");
+        a = this.id.slice(7, );                                         // Sliced id prn as pr & n and stores value of n in a. ( n is noting but 1, 2, 3, ... )
+        cart['pr'+a] = cart['pr'+a] - 1;                                // Decreasing value by 1 of respective id of product
+        cart['pr'+a] = Math.max(0, cart['pr'+a]);                       // Validation for nagative number i.e. maximum value of cart['pr'+a] can be decrease upto 0 only and it is set by Math.max()
+        document.getElementById('valpr'+a).innerHTML = cart['pr'+a];    // Changing value inside span tag of updateCart function
+        updateCart(cart);                                               // Calling updateCart() to update the cart values
+
+
+    })
+
+    $('.divpr').on("click", "button.plus", function(){
+
+        // console.log("Plus clicked");
+        a = this.id.slice(6, );                                         // Sliced id prn as pr & n and stores value of n in a. ( n is noting but 1, 2, 3, ... )
+        cart['pr'+a] = cart['pr'+a] + 1;                                // Increasing value by 1 of respective id of product
+        document.getElementById('valpr'+a).innerHTML = cart['pr'+a];    // Changing value inside span tag of updateCart function
+        updateCart(cart);                                               // Calling updateCart() to update the cart values
+
+
+    })
+
 
 </script>
 
