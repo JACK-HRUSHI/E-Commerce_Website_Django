@@ -1,4 +1,4 @@
-<!--INHERITANCE DONE FOR basic.html FILE-->
+  <!--INHERITANCE DONE FOR basic.html FILE-->
 {% extends 'shop/basic.html' %}
 
 <!-- TITLE OF ABOUT PAGE-->
@@ -75,7 +75,7 @@ padding-right: 0
                         <div class="card align-items-center" style="width: 18rem;">
                             <img src="/media/{{i.image}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">{{i.product_name}}</h5>
+                                <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                                 <p class="card-text">{{i.desc|slice:"0:23"}}...</p>
 
                                 <span id="divpr{{i.id}}" class="divpr">
@@ -135,14 +135,12 @@ padding-right: 0
     }
     else{
         cart = JSON.parse(localStorage.getItem('cart'));
-
-        document.getElementById('cart').innerHTML = Object.keys(cart).length;
-
         updateCart(cart);
     }
 
     // If add to cart is clicked, add/increamnet the item
-    $('.cart').click(function(){
+    // $('.cart').click(function(){
+    $('.divpr').on('click', 'button.cart', function(){
 
         var idstr = this.id.toString(); // It contains product id as, pr1, pr2, pr3 & so on
 
@@ -154,26 +152,53 @@ padding-right: 0
         }
 
         updateCart(cart);
-        // console.log(cart);
 
     });
 
     // Add popover to cart
-    document.addEventListener("DOMContentLoaded", function(){
+    $(document).ready(function(){
+        $('[data-bs-toggle="popover"]').popover();
+    });
 
-        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-        var popoverList = popoverTriggerList.map(function(element){
-            return new bootstrap.Popover(element);
+    // updatePopover(cart);
+
+    //Function to update popover
+    function updatePopover(cart){
+
+        var popStr = "";
+        popStr = popStr + "<h5> Cart For Your Items </h5><div class='mx-2 my-2'>";
+        var i = 1;
+        for(var item in cart){
+            popStr = popStr + "<b>" + i + "</b>. ";
+            popStr = popStr + document.getElementById('name' + item).innerHTML + " Qty: " + cart[item] + '<br>' + '<br>' ;
+            i = i+1;
+        }
+
+        popStr = popStr +  "</div><div><a href='/shop/checkout'><button class='btn btn-primary' id ='checkout'>Checkout</button></a> <button class='btn btn-primary' onclick='clearCart()' id ='clearCart'>Clear Cart</button></div>";
+
+        // console.log(popStr);
+
+        document.getElementById('popcart').setAttribute('data-bs-content', popStr);
+        document.getElementById('popcart').setAttribute('data-bs-html', true);
+
+        $(document).ready(function(){
+
+              $(".btn-secondary").click(function(){
+                 $("[data-bs-toggle='popover']").popover('show');
+              });
+
         });
 
-    });
+    }
 
     // By this function we are replacing the button which is inside span tag of id "divpr{{i.id}}"
     function updateCart(cart){
 
         // console.log(cart);
 
+        var sum = 0;
         for(var item in cart){
+            sum = sum + cart[item];
             document.getElementById('div'+item).innerHTML = "<button id='minus" + item+ "' class='btn btn-primary minus'>-</button> <span id='val" + item+ "'>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'>+</button>";
 
             // We only write id as " 'div'+item " not " 'divpr'+item ". Since, item id is come as pr1, pr2, pr3 & ...
@@ -184,7 +209,23 @@ padding-right: 0
 
         // Updating values in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        document.getElementById('cart').innerHTML = sum;
+        updatePopover(cart);
+
+    }
+
+    // Clear cart values
+    function clearCart(){
+
+        cart = JSON.parse(localStorage.getItem('cart'));
+
+        for(var item in cart){
+            document.getElementById('div'+item).innerHTML = '<button id="'+ item +'" class="btn btn-primary cart">Add to Cart</button>';
+        }
+
+        localStorage.clear();
+        cart = {};
+        updateCart(cart);
 
     }
 
@@ -219,4 +260,5 @@ padding-right: 0
 
 <!--SO BY THIS WE ARE WORKING WITH DRY PRINCIPLE - DO NOT REPEAT YOURSELF-->
 <!--AND SAVES TIME, EFFORT, MEMORY-->
+
 

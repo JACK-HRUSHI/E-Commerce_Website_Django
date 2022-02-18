@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -46,9 +46,12 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <button type="button" id="popcart" class="mx-2 btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-html="true"  data-bs-content="<h5> Cart Items Is To Be Listed Here </h5>">
+            <a href='/shop/checkout'><button class='btn btn-primary mx-2' id='checkOut'>CheckOut</button></a>
+            <button type="button" id="popcart" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom">
               Cart ( <span id="cart"> 0 </span> )
             </button>
+            <button class='btn btn-primary mx-2' onClick='clearCart()' id='clearCart'>ClearCart</button>
+
         </div>
     </div>
 </nav>
