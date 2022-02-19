@@ -38,3 +38,4 @@ class Orders(models.Model):
     city = models.CharField(max_length=111)
     state = models.CharField(max_length=111)
     zip_code = models.CharField(max_length=111)
+    phone = models.CharField(max_length=111, default="")
