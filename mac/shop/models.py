@@ -18,12 +18,12 @@ class Product(models.Model):
 
         return self.product_name
 
-    # We add this function in class, since in DB product name is display as ( product_object n )
-    # So by doing this it will replace name ( product_object n --> product_name give in DB )
-
-
-
-# To save changes done in models use command --> python manage.py makemigrations
-# Changes are get stored in migration  folder of app --> shop
-
-# To apply changes use command --> python manage.py migrate
+class Orders(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    items_json = models.CharField(max_length=5000)
+    name = models.CharField(max_length=90)
+    email = models.CharField(max_length=111)
+    add = models.CharField(max_length=111)
+    city = models.CharField(max_length=111)
+    state = models.CharField(max_length=111)
+    zip_code = models.CharField(max_length=111)
