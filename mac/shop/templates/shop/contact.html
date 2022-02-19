@@ -42,6 +42,22 @@ alert('Thanks for contacting us. We will get back to you soon!');
 
 document.location = "/shop/contact";
 {% endif %}
+
+if(localStorage.getItem('cart') == null){
+    var cart = {};
+}
+  else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+
+var sum = 0;
+for(item in cart){
+	let qty = cart[item][0];
+          let name = cart[item][1];
+	sum = sum + qty;
+}
+document.getElementById('cart').innerHTML = sum;
+
 </script>
 {% endblock %}
 
