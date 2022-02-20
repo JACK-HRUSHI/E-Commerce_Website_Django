@@ -2,7 +2,7 @@
 {% extends 'shop/basic.html' %}
 
 <!-- TITLE OF ABOUT PAGE-->
-{% block title %} CheckOut - My Awesome Cart {% endblock %}
+{% block title %} Tracker - My Awesome Cart {% endblock %}
 
 <!-- BODY OF ABOUT PAGE-->
 {% block body %}
@@ -10,55 +10,38 @@
 <div class="container my-3">
 
   <div class="col">
-      <h3><b>My Awesome Cart Tracker - Track Your orders</b></h3>
+      <h3><b>My Awesome Cart Tracker - Enter You Email Address And Order_ID To Track Your Order</b></h3>
+      <div class="my-2">
+      <form class="row g-3" method="post" action="#" id="trackerForm"> {% csrf_token %}
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="col-md-6">
+          <label for="orderId" class="form-label">Order_ID</label>
+          <input type="text" class="form-control" id="orderId" name="orderId" placeholder="Enter Order_ID" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Track Order</button>
+        </div>
+      </form>
+      </div>
+  </div>
+
+  <div class="col my-3">
+      <h3><b>My Awesome Cart Tracker - Your Order Status</b></h3>
       <div class="my-3">
           <ol id="items" class="list-group list-group-numbered">
-
+              <div class='mx-5 my-4 '><b>Enter Correct Email Address And Order_ID Above, To Find Status About Your Order! </b></div>
           </ol>
       </div>
   </div>
 
   <div class="col my-3">
-      <h3><b>Step 2 - Enter Address & Other Details</b></h3>
-      <div class="my-2">
-        <form class="row g-3" method="post" action="/shop/checkout/"> {% csrf_token %}
-          <input type="hidden" name="itemsJson" id="itemsJson">
-          <div class="col-md-6">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
-          </div>
-          <div class="col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
-          </div>
-          <div class="col-12">
-            <label for="add1" class="form-label">Address</label>
-            <input type="text" class="form-control" id="add1" name="add1" placeholder="1234 Main St" required>
-          </div>
-          <div class="col-12">
-            <label for="add2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="add2" name="add2" placeholder="Apartment, studio, or floor" required>
-          </div>
-          <div class="col-md-6">
-            <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Enter City" required>
-          </div>
-          <div class="col-md-4">
-            <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state" name="state" placeholder="Enter State" required>
-          </div>
-          <div class="col-md-2">
-            <label for="zip_code" class="form-label">Zip</label>
-            <input type="number" class="form-control" id="zip_code" name="zip_code" placeholder="Enter Zip" required>
-          </div>
-          <div class="col">
-            <label for="phone" class="form-label">Mobile</label>
-            <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone" required>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Place Order</button>
-          </div>
-        </form>
+      <h3><b>My Awesome Cart Tracker - Your Order Details</b></h3>
+      <div class="my-3">
+          <ol id="detail" class="list-group list-group-numbered">
+          </ol>
       </div>
   </div>
 
@@ -69,43 +52,65 @@
 {% block js %}
 <script>
 
-  if(localStorage.getItem('cart') == null){
-    var cart = {};
-  }
-  else{
-    cart = JSON.parse(localStorage.getItem('cart'));
-  }
+    $('#trackerForm').submit(function(event){
 
-  var sum = 0;
-  if ($.isEmptyObject(cart)){
-    // If Object Is Empty
-    mystr = `<p>Your cart is empty, please add some items to your Cart before checking out.</p>`
-    $('#items').append(mystr);
-  }
-  else{
-    for(item in cart){
-      let qty = cart[item][0];
-      let name = cart[item][1];
-      sum = sum + qty;
+        $('#items').empty();
+        var formData = {
+            'email': $('input[name=email]').val(),
+            'orderId': $('input[name=orderId]').val(),
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/shop/tracker/',
+            data: formData,
+            encode: true
+        })
 
-      // Written with the help of ES6
+        .done(function(data){
+            // console.log(data);
+            data = JSON.parse(data);
+            updates = data[0];
 
-      mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
-                 <div class="fw-bold ms-2 me-auto">${name}</div>
-                 <span class="badge bg-primary rounded-pill">${qty}</span>
-               </li>`
-      $('#items').append(mystr);
-    }
-  }
+            if(updates.length>0 & updates!={}){
+                for(i=0; i<updates.length; i++){
+                  let text = updates[i]['text'];
+                  let time = updates[i]['time'];
 
-  document.getElementById('cart').innerHTML = sum;
+                  mystr = `<ul class="list-group-item d-flex justify-content-between align-items-start">
+                             <div class="fw-bold ms-2 me-auto">${text}</div>
+                             <span class="badge bg-primary rounded-pill">${time}</span>
+                           </ul>`
+                  $('#items').append(mystr);
+                }
+            }
+            else{
+                mystr = `<div class='mx-5 my-4 '><b>Error :<br> Invalid Credentials.<br>Make Sure To Give Correct Credentials To Fetch Your Order Status.</b></div>`
+                $('#items').append(mystr);
+            }
 
-  $('#itemsJson').val(JSON.stringify(cart));
-  {% if thank %}
-    alert('Thanks for ordering. Your order id is {{id}}. Use it to track your order using our order tracker');
-    localStorage.clear();
-    document.location = "/shop";
-  {% endif %}
+            cart = JSON.parse(data[1]);
+            console.log(cart);
+
+            for(item in cart){
+              let qty = cart[item][0];
+              let name = cart[item][1];
+
+              mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
+                         <div class="fw-bold ms-2 me-auto">${name}</div>
+                         <span class="badge bg-primary rounded-pill">${qty}</span>
+                       </li>`
+              $('#detail').append(mystr);
+            }
+
+        })
+
+        event.preventDefault();
+
+        $("#email").val("");
+        $("#orderId").val("");
+
+    });
 
 </script>
 {% endblock %}
