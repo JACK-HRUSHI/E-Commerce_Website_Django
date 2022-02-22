@@ -10,18 +10,30 @@
     <div class="row g-5">
         <div class="col-md-8">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                From the Firehose
+                {{post.title}}
             </h3>
 
             <article class="blog-post">
-                <h2 class="blog-post-title">Heading0</h2>
-                <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
 
-                <p>Heading0 Content</p>
-                <h3>Heading1</h3>
-                <p>Heading1 Content</p>
-                <h3>Heading2</h3>
-                <p>Heading2 Content</p>
+<!--                <h3>{{post.head0}}</h3>-->
+                <p class="blog-post-meta">{{post.pub_date}} by <a href="#" style="text-decoration: none"><b>{{post.by_name}}</b></a> </p>
+                <p>{{post.chead0}}</p>
+
+                <h3>{{post.head1}}</h3>
+                <p>{{post.chead1}}</p>
+
+                <h3>{{post.head2}}</h3>
+                <p>{{post.chead2}}</p>
+
+                <br>
+                <a href="/blog" style="text-decoration: none">← Back</a>
+                <br>
+
+                <br>
+                <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-width="" data-numposts="5"></div>
+                <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+                <br>
+
             </article>
 
         </div>
