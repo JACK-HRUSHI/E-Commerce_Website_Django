@@ -4,6 +4,9 @@ from django.db import models
 
 #  Do changes in MAIN PROJECT --> SETTINGS.PY --> INSTALLED_APPS[] --> Replace 'shop' with 'shop.apps.ShopConfig'
 
+# Username : Jack
+# Password : jackh2002
+
 class Product(models.Model):
     product_id = models.AutoField # It Automatically Increments Count
     product_name = models.CharField(max_length=50)

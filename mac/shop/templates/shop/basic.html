@@ -45,15 +45,15 @@
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form method="get" action="/shop/search/" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+                <button class="btn btn-outline-success my-2" type="submit">Search</button>
             </form>
             <a href='/shop/checkout'><button class='btn btn-primary mx-2' id='checkOut'>CheckOut</button></a>
-            <button type="button" id="popcart" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
+            <button type="button" id="popcart" class="btn btn-secondary my-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
               Cart ( <span id="cart"> 0 </span> )
             </button>
-            <button class='btn btn-primary mx-2' onClick='clearCart()' id='clearCart'>ClearCart</button>
+            <button class='btn btn-primary mx-2 my-2' onClick='clearCart()' id='clearCart'>ClearCart</button>
 
         </div>
     </div>
