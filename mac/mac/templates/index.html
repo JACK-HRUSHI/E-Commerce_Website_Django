@@ -1,4 +1,4 @@
- <!doctype html>
+   <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -9,36 +9,72 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Welcome to My Awesome Cart</title>
+    <style>
+
+      body{
+        background: #C6FFDD;
+        background: -webkit-linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+        background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD);
+
+      }
+
+      .btn-grad {background-image: linear-gradient(to right, #C6FFDD 0%, #FBD786  51%, #f7797d  100%)}
+      .btn-grad {
+        padding: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        width: 140px;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: cursive;
+        color: #FBD786;
+      }
+      .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .ok{
+        border-radius: 30px;
+        /* background-color: #00h; */
+        color: #FBD786;
+        font-family: cursive;
+        text-shadow: 1px 0 0 #000, 0 -2px 0 #000, 0 1px 0 #000, -2px 0 0 #000;
+      }
+
+
+    </style>
   </head>
   <body>
 
     <div class="container my-5">
-      <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="p-5 mb-4 ok">
         <div class="container-fluid py-5">
-          <h1 class="display-5 fw-bold">Welcome to My Awesome Cart</h1>
-          <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+          <h1 class="display-5 fw-bold">Welcome to My Awesome Cart !</h1>
+          <p class="col-md-8 fs-4">Website is build for student and student counsils where admin can post upcoming updates about event and exam throungh blog and where student can also buy thing releated to events and stationary also books used or 2nd hand products.</p>
           <br>
-          <a class="btn btn-primary btn-lg" href="/shop" type="button">Go To Shop</a>
-          <a class="btn btn-primary btn-lg mx-2" href="/blog" type="button">Go To Blog</a>
-          <a class="btn btn-primary btn-lg" href="/admin" type="button">Admin</a>
+           <a class='btn btn-primary btn-lg btn-grad mx-1 my-1' href='/shop' type='button'>Go To Shop</a>
+            <a class='btn btn-primary btn-lg btn-grad mx-1 my-1' href='/blog' type='button'>Go To Blog</a>
         </div>
       </div>
     </div>
 
-    <script>
-      window.location = "/shop";
-<!--      Done this for rediraction purpose-->
-    </script>
+<!--    <script>-->
+<!--      window.location = "/shop";-->
+<!--      &lt;!&ndash; Done this for rediraction purpose &ndash;&gt;-->
+<!--    </script>-->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
+
   </body>
 </html>
