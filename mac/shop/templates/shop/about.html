@@ -25,6 +25,8 @@
 <!-- BODY OF ABOUT PAGE-->
  {% block body %}
 
+{% load static %}
+
 <main role="main">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -41,26 +43,39 @@ In August 2018, U.S.-based retail chain Walmart acquired a 77% controlling stake
   </div>
 
   <div class="container my-3">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
 
-    <hr>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col text-center">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'shop/media/jack.jpg' %}" style="border: 1px solid black">
+
+          <h2 class="my-2">Priyan Shetty</h2>
+          <p>
+            Paragraph of text beneath the heading to explain the heading. We'll
+            add onto it with another sentence and probably just keep going until
+            we run out of words.
+          </p>
+        </div>
+        <div class="feature col text-center">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'shop/media/jack.jpg' %}" style="border: 1px solid black">
+
+          <h2 class="my-2">Simranjot Singh</h2>
+          <p>
+            Paragraph of text beneath the heading to explain the heading. We'll
+            add onto it with another sentence and probably just keep going until
+            we run out of words.
+          </p>
+        </div>
+        <div class="feature col text-center">
+          <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{% static 'shop/media/jack.jpg' %}" style="border: 1px solid black">
+
+          <h2 class="my-2">Shubham Paikrao</h2>
+          <p>
+            Paragraph of text beneath the heading to explain the heading. We'll
+            add onto it with another sentence and probably just keep going until
+            we run out of words.
+          </p>
+        </div>
+      </div>
 
   </div> <!-- /container -->
 

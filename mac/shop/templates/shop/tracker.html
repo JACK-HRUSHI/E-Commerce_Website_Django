@@ -32,7 +32,7 @@
       <h3><b>My Awesome Cart Tracker - Your Order Status</b></h3>
       <div class="my-3">
           <ol id="items" class="list-group list-group-numbered">
-              <div class='mx-5 my-4 '><b>Enter Correct Email Address And Order_ID Above, To Find Status About Your Order! </b></div>
+              <div class='mx-5 my-4 '><b>.................................................................................</b></div>
           </ol>
       </div>
   </div>
@@ -41,6 +41,7 @@
       <h3><b>My Awesome Cart Tracker - Your Order Details</b></h3>
       <div class="my-3">
           <ol id="detail" class="list-group list-group-numbered">
+              <div class='mx-5 my-4 '><b>.................................................................................</b></div>
           </ol>
       </div>
   </div>
@@ -55,6 +56,7 @@
     $('#trackerForm').submit(function(event){
 
         $('#items').empty();
+        $('#detail').empty();
         var formData = {
             'email': $('input[name=email]').val(),
             'orderId': $('input[name=orderId]').val(),

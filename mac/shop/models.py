@@ -22,6 +22,7 @@ class Product(models.Model):
         return self.product_name
         return self.price
 
+
 class Contact(models.Model):
     msg_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)

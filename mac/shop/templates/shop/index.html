@@ -1,4 +1,5 @@
- <!doctype html>
+{% load static %}
+<!--<!doctype html>-->
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -54,6 +55,8 @@
 
 
     </style>
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -69,34 +72,42 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/shop">Home</a>
+                    <a class="nav-link" href="/shop"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop/about">AboutUs</a>
+                    <a class="nav-link" href="/shop/about"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/tracker">Tracker</a>
+                    <a class="nav-link" href="/shop/tracker"><i class="fa-solid fa-map-location-dot"></i> Tracker</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/contact">ContactUs</a>
+                    <a class="nav-link" href="/shop/contact"><i class="fa-solid fa-phone"></i> Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
+                    <a class="nav-link" href="/blog"><i class="fa-brands fa-blogger"></i> Blog</a>
                 </li>
             </ul>
-            <form method="get" action="/shop/search/" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-                <button class="btn btn-outline-success my-2" type="submit">Search</button>
+            <form method="get" action="/shop/search/" class="d-flex my-2">
+
+                <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+                <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-            <a href='/shop/checkout'><button class='btn btn-primary mx-2' id='checkOut'>CheckOut</button></a>
-             <button type="button" id="popcart" class="btn btn-secondary my-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" >
-              Cart ( <span id="cart"> 0 </span> )
+            <a href='/shop/checkout'><button class='btn btn-secondary  mx-2' id='checkOut'><i class="fa-solid fa-circle-check"></i> CheckOut</button></a>
+
+            <button type="button" id="popcart" class="btn btn-secondary position-relative icon-button" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
+              <span><i class="fa-solid fa-cart-shopping"></i> Cart</span>
+              <span id="cart" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span>
             </button>
-            <button class='btn btn-primary mx-2 my-2' onClick='clearCart()' id='clearCart'>ClearCart</button>
+
+            <button class='btn btn-secondary mx-2 my-2' onClick='clearCart()' id='clearCart'><i class="fa-solid fa-circle-xmark"></i> Clear</button>
 
         </div>
     </div>
 </nav>
+
 
 <div class="container my-2  ">
 
