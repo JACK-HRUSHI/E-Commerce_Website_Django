@@ -50,6 +50,10 @@ def about(request):
     return render(request, 'shop/about.html')
 
 
+def cart(request):
+    return render(request, 'shop/cart.html')
+
+
 def contact(request):
 
     if request.method == "POST":
