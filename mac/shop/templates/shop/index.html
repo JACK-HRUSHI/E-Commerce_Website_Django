@@ -50,7 +50,15 @@
 
         body .no-padding{
         padding-left: 0;
-        padding-right: 0
+        padding-right: 0;
+        }
+
+        a:hover{
+        color: white;
+        }
+
+        .btn{
+        border-radius: 10px;
         }
 
 
@@ -92,17 +100,14 @@
                 <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
                 <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-            <a href='/shop/checkout'><button class='btn btn-secondary  mx-2' id='checkOut'><i class="fa-solid fa-circle-check"></i> CheckOut</button></a>
 
-            <button type="button" id="popcart" class="btn btn-secondary position-relative icon-button" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
-              <span><i class="fa-solid fa-cart-shopping"></i> Cart</span>
+            <a href='/shop/cart'><button type="button" id="popcart" class="btn btn-outline-info position-relative icon-button mx-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
+              <span><i class="fa-solid fa-cart-shopping"></i> <b>Cart</b></span>
               <span id="cart" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                 0
                 <span class="visually-hidden">unread messages</span>
               </span>
-            </button>
-
-            <button class='btn btn-secondary mx-2 my-2' onClick='clearCart()' id='clearCart'><i class="fa-solid fa-circle-xmark"></i> Clear</button>
+            </button></a>
 
         </div>
     </div>
@@ -130,14 +135,14 @@
                             <div class="card-body">
                                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                                 <p class="card-text">{{i.desc|slice:"0:23"}}...</p>
-                                <p class="card-text"><b>Price : </b><i id="pricepr{{i.id}}">{{i.price}}</i></p>
+                                <p class="card-text"><b>Price : </b><i id="pricepr{{i.id}}">₹{{i.price}}</i></p>
 
                                 <span id="divpr{{i.id}}" class="divpr">
-                                    <button id="pr{{i.id}}" class="btn btn-primary cart">Add to Cart</button>
+                                    <button id="pr{{i.id}}" class="btn btn-outline-primary cart"><b>Add to Cart</b></button>
                                 </span>
 
                                 <a href="/shop/prodview/{{i.id}}">
-                                    <button id="qv{{i.id}}" class="btn btn-primary cart">QuickView</button>
+                                    <button id="qv{{i.id}}" class="btn btn-outline-primary cart"><b>QuickView</b></button>
                                 </a>
                             </div>
                         </div>
@@ -205,6 +210,8 @@
     $('.divpr').on('click', 'button.cart', function(){
 
         var idstr = this.id.toString(); // It( idstr ) contains product id as, pr1, pr2, pr3 & so on
+        let pri = document.getElementById('price'+idstr).innerHTML;
+        pri = parseInt(pri)
 
         if(cart[idstr] != undefined){
             qty = cart[idstr][0] + 1;
@@ -212,7 +219,7 @@
         else{
             qty = 1;
             name = document.getElementById('name'+idstr).innerHTML;
-            price = document.getElementById('price'+idstr).innerHTML;
+            price = pri;
             cart[idstr] = [qty, name, price];
         }
 
@@ -220,41 +227,6 @@
 
     });
 
-    // Add popover to cart
-    $(document).ready(function(){
-        $('[data-bs-toggle="popover"]').popover();
-    });
-
-    updatePopover(cart);
-
-    //Function to update popover
-    function updatePopover(cart){
-
-        var popStr = "";
-        popStr = popStr + "<h5> Cart For Your Items </h5><div class='mx-2 my-2'>";
-        var i = 1;
-        for(var item in cart){
-            popStr = popStr + "<b>" + i + "</b>. ";
-            popStr = popStr + document.getElementById('name' + item).innerHTML + ' Qty: ' + cart[item][0] + ' Price: ' + cart[item][2] + '<br>' ;
-            i = i+1;
-        }
-
-        popStr = popStr +  "</div>";
-
-        // console.log(popStr);
-
-        document.getElementById('popcart').setAttribute('data-bs-content', popStr);
-        document.getElementById('popcart').setAttribute('data-bs-html', true);
-
-        $(document).ready(function(){
-
-              $(".btn-secondary").click(function(){
-                 $("[data-bs-toggle='popover']").popover('show');
-              });
-
-        });
-
-    }
 
     // By this function we are replacing the button which is inside span tag of id "divpr{{i.id}}"
     function updateCart(cart){
@@ -264,7 +236,7 @@
         var sum = 0;
         for(var item in cart){
             sum = sum + cart[item][0];
-            document.getElementById('div'+item).innerHTML = "<button id='minus" + item+ "' class='btn btn-primary minus'>-</button> <span id='val" + item+ "'>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'>+</button>";
+            document.getElementById('div'+item).innerHTML = "<button id='minus" + item+ "' class='btn btn-outline-primary minus'><b>-</b></button> <span id='val" + item+ "'>" + cart[item][0] + "</span> <button id='plus" + item + "' class='btn btn-outline-primary plus'><b>+</b></button>";
 
             // We only write id as " 'div'+item " not " 'divpr'+item ". Since, item id is come as pr1, pr2, pr3 & ...
             // So in LHS " 'div'+item " is get replaced as divpr1, divpr2, divpr3 & ...
@@ -275,7 +247,6 @@
         // Updating values in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML = sum;
-        updatePopover(cart);
 
     }
 
