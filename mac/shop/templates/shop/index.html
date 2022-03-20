@@ -61,18 +61,30 @@
         border-radius: 10px;
         }
 
+        .okok{
+        width: 12px;
+        }
+
+        .img{
+        /* background-image: url({% static 'shop/media/jack.jpg' %}); */
+        background-image: url("https://www.w3schools.com/css/img_lights.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
 
     </style>
     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
     <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'shop/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'shop/favicon/android-chrome-512x512.png' %}">
 </head>
 <body>
 
  {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/shop"><strong>MyAwesomeCart</strong></a>
+        <a class="navbar-brand" href="/shop" style="font-family: 'Brush Script MT', cursive; font-size: 35px;"><i class="fa-brands fa-battle-net"></i> <strong>MyAwesomeCart</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,29 +92,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop"><i class="fa-solid fa-house"></i> Home</a>
+                    <a class="nav-link" href="/shop" style="font-family: cursive;"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop/about"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
+                    <a class="nav-link" href="/shop/about" style="font-family: cursive;"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/tracker"><i class="fa-solid fa-map-location-dot"></i> Tracker</a>
+                    <a class="nav-link" href="/shop/tracker" style="font-family: cursive;"><i class="fa-solid fa-map-location-dot"></i> Tracker</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/contact"><i class="fa-solid fa-phone"></i> Contact</a>
+                    <a class="nav-link" href="/shop/contact" style="font-family: cursive;"><i class="fa-solid fa-phone"></i> Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog"><i class="fa-brands fa-blogger"></i> Blog</a>
+                    <a class="nav-link" href="/blog" style="font-family: cursive;"><i class="fa-brands fa-blogger"></i> Blog</a>
                 </li>
             </ul>
             <form method="get" action="/shop/search/" class="d-flex my-2">
-
-                <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+                <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search" style="font-family: cursive;">
                 <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
 
-            <a href='/shop/cart'><button type="button" id="popcart" class="btn btn-outline-info position-relative icon-button mx-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
-              <span><i class="fa-solid fa-cart-shopping"></i> <b>Cart</b></span>
+            <a href='/admin'><button class='btn btn-outline-info mx-2' style="font-family: cursive;"><i class="fa-solid fa-circle-user"></i> <b>Admin</b></button></a>
+
+            <a href='/shop/cart'><button type="button" id="popcart" class="btn btn-outline-info position-relative icon-button mr-1" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
+              <span style="font-family: cursive;"><i class="fa-solid fa-cart-shopping"></i> <b>Cart</b></span>
               <span id="cart" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                 0
                 <span class="visually-hidden">unread messages</span>
@@ -113,12 +126,19 @@
     </div>
 </nav>
 
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light img">
+    <div class="col-md-5 p-lg-5 mx-auto my-5" style="font-family: cursive;">
+      <h1 class="display-4 fw-normal" style="color: white;">Punny headline</h1>
+      <p class="lead fw-normal" style="color: white;">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
+        <a class="btn btn-outline-warning" href="#" style="color: white;"><b>Coming soon</b></a>
+    </div> 
+</div>
 
 <div class="container my-2  ">
 
     {% for product, range, nSlides in allProds %}
 
-    <h1 class="my-3"> {{product.0.category }} </h1>
+    <h3 class="my-3" style="font-family: cursive;"><i> {{product.0.category }} </i></h3>
 
     <div class="row">
 
@@ -130,19 +150,19 @@
                     {% for i in product %}
 
                     <div class="col-xs-3 col-sm-3 col-md-3  ">
-                        <div class="card align-items-center" style="width: 18rem;">
+                        <div class="card align-items-center" style="width: 18rem; font-family: cursive;">
                             <img src="/media/{{i.image}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                                 <p class="card-text">{{i.desc|slice:"0:23"}}...</p>
-                                <p class="card-text"><b>Price : </b><i id="pricepr{{i.id}}">₹{{i.price}}</i></p>
+                                <p class="card-text"><b>Price : </b><i id="pricepr{{i.id}}">{{i.price}}</i></p>
 
                                 <span id="divpr{{i.id}}" class="divpr">
-                                    <button id="pr{{i.id}}" class="btn btn-outline-primary cart"><b>Add to Cart</b></button>
+                                    <button id="pr{{i.id}}" class="btn btn-outline-primary cart"><i class="fa-solid fa-cart-plus okok"></i> <b>AddToCart</b></button>
                                 </span>
 
                                 <a href="/shop/prodview/{{i.id}}">
-                                    <button id="qv{{i.id}}" class="btn btn-outline-primary cart"><b>QuickView</b></button>
+                                    <button id="qv{{i.id}}" class="btn btn-outline-primary cart"><i class="fa-solid fa-eye okok"></i> <b>QuickView</b></button>
                                 </a>
                             </div>
                         </div>
@@ -295,5 +315,69 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 -->
+<br><br>
+<div class="container-flow">
+  <div class="container">
+      <hr>
+      <footer class="footer mt-auto py-3">
+        <div class="row">
+          <div class="col-2">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+
+          <div class="col-2">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+
+          <div class="col-2">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+            </ul>
+          </div>
+
+          <div class="col-4 offset-1">
+            <form>
+              <h5>Subscribe to our WebSite</h5>
+              <p>Monthly digest of whats new and exciting from us.</p>
+              <div class="d-flex w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between py-4 my-4 border-top">
+          <p>© 2021 Company, Inc. All rights reserved.</p>
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-twitter"></i></a></li>
+            <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li class="ms-3"><a class="link-dark" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+          </ul>
+        </div>
+      </footer>
+  </div>
+</div>
+
 </body>
 </html>

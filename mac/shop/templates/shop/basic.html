@@ -28,12 +28,14 @@
     </style>
     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
     <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'shop/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'shop/favicon/android-chrome-512x512.png' %}">
 </head>
-<body>
+<body style="font-family: cursive;">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/shop"><strong>MyAwesomeCart</strong></a>
+        <a class="navbar-brand" href="/shop" style="font-family: 'Brush Script MT', cursive; font-size: 35px;"><i class="fa-brands fa-battle-net"></i> <strong>MyAwesomeCart</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,24 +43,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/shop"><i class="fa-solid fa-house"></i> Home</a>
+                    <a class="nav-link" aria-current="page" href="/shop" style="font-family: cursive;"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop/about"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
+                    <a class="nav-link" href="/shop/about" style="font-family: cursive;"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/tracker"><i class="fa-solid fa-map-location-dot"></i>Tracker</a>
+                    <a class="nav-link" href="/shop/tracker" style="font-family: cursive;"><i class="fa-solid fa-map-location-dot"></i>Tracker</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/contact"><i class="fa-solid fa-phone"></i> ContactUs</a>
+                    <a class="nav-link" href="/shop/contact" style="font-family: cursive;"><i class="fa-solid fa-phone"></i> ContactUs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog"><i class="fa-brands fa-blogger"></i> Blog</a>
+                    <a class="nav-link" href="/blog" style="font-family: cursive;"><i class="fa-brands fa-blogger"></i> Blog</a>
                 </li>
             </ul>
 
             <a href='/shop/cart'><button type="button" id="popcart" class="btn btn-outline-info position-relative icon-button mx-2" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus">
-              <span><i class="fa-solid fa-cart-shopping"></i> <b>Cart</b></span>
+              <span style="font-family: cursive;"><i class="fa-solid fa-cart-shopping"></i> <b>Cart</b></span>
               <span id="cart" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                 0
                 <span class="visually-hidden">unread messages</span>

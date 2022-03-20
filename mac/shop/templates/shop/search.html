@@ -51,7 +51,7 @@ padding-right: 0
 {% block body %}
 {% load static %}
 
-<div class="container my-2  ">
+<div class="container my-2">
 
     {% for product, range, nSlides in allProds %}
 
@@ -158,42 +158,6 @@ padding-right: 0
 
     });
 
-    // Add popover to cart
-    $(document).ready(function(){
-        $('[data-bs-toggle="popover"]').popover();
-    });
-
-    //Function to update popover
-    function updatePopover(cart){
-
-        var popStr = "";
-        popStr = popStr + "<h5> Cart For Your Items </h5><div class='mx-2 my-2'>";
-        var i = 1;
-        for(var item in cart){
-            popStr = popStr + "<b>" + i + "</b>. ";
-            popStr = popStr + document.getElementById('name' + item).innerHTML + " Qty: " + cart[item][0] + '<br>' ;
-            i = i+1;
-        }
-
-        popStr = popStr +  "</div>";
-
-        popStr = popStr + "<a href='/shop/checkout'><button class='btn btn-primary' id ='checkout'>Checkout</button></a><button class='btn btn-primary' onclick='clearCart()' id ='clearCart'>Clear Cart</button>";
-
-        // console.log(popStr);
-
-        document.getElementById('popcart').setAttribute('data-bs-content', popStr);
-        document.getElementById('popcart').setAttribute('data-bs-html', true);
-
-        $(document).ready(function(){
-
-              $(".btn-secondary").click(function(){
-                 $("[data-bs-toggle='popover']").popover('show');
-              });
-
-        });
-
-    }
-
     // By this function we are replacing the button which is inside span tag of id "divpr{{i.id}}"
     function updateCart(cart){
 
@@ -213,7 +177,6 @@ padding-right: 0
         // Updating values in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML = sum;
-        updatePopover(cart);
 
     }
 
