@@ -85,12 +85,11 @@
                 }
             }
             else{
-                mystr = `<div class='mx-5 my-4 '><b>Error :<br> Invalid Credentials.<br>Make Sure To Give Correct Credentials To Fetch Your Order Status.</b></div>`
-                $('#items').append(mystr);
+                alert('Error: Invalid Credentials. Make Sure To Give Correct Credentials To Fetch Your Order Status.');
             }
 
             cart = JSON.parse(data[1]);
-            console.log(cart);
+            //console.log(cart);
 
             for(item in cart){
               let qty = cart[item][0];
