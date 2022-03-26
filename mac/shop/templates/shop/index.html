@@ -92,19 +92,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop" style="font-family: cursive;"><i class="fa-solid fa-house"></i> Home</a>
+                    <a class="nav-link" href="/shop" style="font-family: cursive;"><i class="fa-solid fa-house fa-fade" style="--fa-animation-duration: 2s;"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop/about" style="font-family: cursive;"><i class="fa-solid fa-circle-info"></i> AboutUs</a>
+                    <a class="nav-link" href="/shop/about" style="font-family: cursive;"><i class="fa-solid fa-circle-info fa-fade" style="--fa-animation-duration: 2s;"></i> AboutUs</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/tracker" style="font-family: cursive;"><i class="fa-solid fa-map-location-dot"></i> Tracker</a>
+                    <a class="nav-link" href="/shop/tracker" style="font-family: cursive;"><i class="fa-solid fa-map-location-dot fa-fade" style="--fa-animation-duration: 2s;"></i> Tracker</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="/shop/contact" style="font-family: cursive;"><i class="fa-solid fa-phone"></i> Contact</a>
+                    <a class="nav-link" href="/shop/contact" style="font-family: cursive;"><i class="fa-solid fa-phone fa-fade" style="--fa-animation-duration: 2s;"></i> Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog" style="font-family: cursive;"><i class="fa-brands fa-blogger"></i> Blog</a>
+                    <a class="nav-link" href="/blog" style="font-family: cursive;"><i class="fa-brands fa-blogger fa-fade" style="--fa-animation-duration: 2s;"></i> Blog</a>
                 </li>
             </ul>
             <form method="get" action="/shop/search/" class="d-flex my-2">
@@ -267,21 +267,6 @@
         // Updating values in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById('cart').innerHTML = sum;
-
-    }
-
-    // Clear cart values
-    function clearCart(){
-
-        cart = JSON.parse(localStorage.getItem('cart'));
-
-        for(var item in cart){
-            document.getElementById('div'+item).innerHTML = '<button id="'+ item +'" class="btn btn-primary cart">Add to Cart</button>';
-        }
-
-        localStorage.clear();
-        cart = {};
-        updateCart(cart);
 
     }
 
