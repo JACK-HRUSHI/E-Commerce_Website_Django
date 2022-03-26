@@ -1,0 +1,45 @@
+ <!--INHERITANCE DONE FOR basic.html FILE-->
+{% extends 'blog/basic.html' %}
+
+{% block title %} Blog - My Awesome Cart {% endblock %}
+
+{% block css %} {% endblock %}
+
+{% block body %}
+ <div class=" container my-3">
+    <h3>SuggestUs <i class="fa-solid fa-comments"></i></h3>
+    <form action="/blog/suggest/" method="post"> {% csrf_token %}
+
+      <div class=" my-2 form-group">
+        <label for="name">Name</label>
+        <input type="text" class=" my-2 form-control" id="name" name='name' placeholder="Enter Your Name" required>
+      </div>
+      <div class=" my-2 form-group">
+        <label for="name">Email</label>
+        <input type="email" class=" my-2 form-control" id="email" name='email' placeholder="Enter Your Email" required>
+      </div>
+        <div class=" my-2 form-group">
+        <label for="name">Phone</label>
+        <input type="tel" class=" my-2 form-control" id="phone" name='phone' placeholder="Enter Your Phone Number" required>
+      </div>
+       <div class=" my-2 form-group">
+        <label for="desc">Your Suggestion</label>
+        <textarea class=" my-2 form-control" id="desc" name='desc' rows="3" placeholder="Enter your suggestion for topic..." required></textarea>
+      </div>
+      <button type="submit" class=" my-2 btn btn-outline-success"><i class="fa-solid fa-share-from-square"></i> <b>Submit</b></button>
+
+    </form>
+
+
+
+</div>
+{% endblock %}
+
+{% block js%}
+<script>
+{% if thank %}
+  alert('Thanks for Suggesting us. We will think on our suggestion');
+  document.location = "/blog/suggest";
+{% endif %}
+</script>
+{% endblock %}

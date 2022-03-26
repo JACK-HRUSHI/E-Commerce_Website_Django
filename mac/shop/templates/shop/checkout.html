@@ -12,9 +12,8 @@
   <div class="col">
       <h3><b>Step 1 - My Awesome Cart Express CheckOut - Review Your Cart Items</b></h3>
       <div class="my-3">
-          <ol id="items" class="list-group list-group-numbered">
-
-          </ol>
+         <div id="items" class="my-2">
+         </div>
       </div>
   </div>
 
@@ -84,24 +83,49 @@
     $('#items').append(mystr);
   }
   else{
-    for(item in cart){
-      let qty = cart[item][0];
-      let name = cart[item][1];
-      let price = cart[item][2];
-      sum = sum + qty;
+     document.getElementById("items").innerHTML = `  <table class="table table-striped table-bordered mt-2 border border-2 border-dark" style="text-align: center;">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">No.</th>
+                                                            <th scope="col">Product</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Quantity</th>
+                                                            <th scope="col">Total</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody id="tableBody">
+                                                        </tbody>
+                                                        <tfoot>
+                                                          <tr>
+                                                            <th colspan="4">Total</th>
+                                                            <th id="total">₹0</th>
+                                                          </tr>
+                                                        </tfoot>
+                                                      </table>`
 
-      // Written with the help of ES6
+     var i = 1;
+     var pop = "₹";
+     var sum = 0;
+     for(var item in cart){
+        name = cart[item][1] ;
+        quantity = cart[item][0] ;
+        price = cart[item][2] ;
+        total = quantity * price ;
+        sum = sum + total;
+        let uiString = `<tr>
+                         <td scope="row">${i}</td>
+                         <td>${name}</td>
+                         <td>₹${price}</td>
+                         <td>${quantity}</td>
+                         <td>₹${total}</td>
+                        </tr>`;
+        document.getElementById("tableBody").innerHTML += uiString;
+        i = i+1;
+     }
+     popSum = pop + sum;
+     document.getElementById('total').innerHTML = popSum;
 
-      mystr = `<li class="list-group-item d-flex justify-content-between align-items-start">
-                 <div class="fw-bold ms-2 me-auto">${name}</div>
-                 <div class="fw-bold ms-2 me-auto">₹${price}</div>
-                 <span class="badge bg-primary rounded-pill">${qty}</span>
-               </li>`
-      $('#items').append(mystr);
-    }
   }
-
-  document.getElementById('cart').innerHTML = sum;
 
   $('#itemsJson').val(JSON.stringify(cart));
   {% if thank %}
