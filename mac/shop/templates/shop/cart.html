@@ -1,0 +1,99 @@
+ <!--INHERITANCE DONE FOR basic.html FILE-->
+{% extends 'shop/basic.html' %}
+
+<!-- TITLE OF ABOUT PAGE-->
+{% block title %} Cart - My Awesome Cart {% endblock %}
+
+{% block css %}
+  .cont{
+    border-radius: 15px;
+  }
+{% endblock %}
+
+<!-- BODY OF ABOUT PAGE-->
+{% block body %}
+ <div class="container">
+  <div class="border border-dark cont p-5 m-4">
+    <div>
+      <h2 style="float: left;">Your Cart</h2>
+      <a href='/shop'><button id="clear" class='btn btn-outline-primary mx-3' style="float: right;"><i class="fa-solid fa-bag-shopping"></i> <b>ClearCart</b></button></a>
+    </div>
+    <br><br><br>
+    <table class="table table-striped" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">Total</th>
+          <th id="total">₹0</th>
+        </tr>
+      </tfoot>
+    </table>
+    <br>
+    <div>
+      <a href='/shop'><button class='btn btn-outline-primary mx-2' ><i class="fa-solid fa-bag-shopping"></i> <b>Continue Shopping</b></button></a>
+      <a href='/shop/checkout'><button class='btn btn-outline-primary mx-2' style="float: right" id='checkOut'><i class="fa-solid fa-circle-check"></i> <b>CheckOut</b></button></a>
+    </div>
+  </div>
+ </div>
+{% endblock %}
+
+<!-- JAVASCRIPT-->
+{% block js%}
+<script>
+
+    if(localStorage.getItem('cart') == null){
+      var cart = {};
+    }
+    else{
+        cart = JSON.parse(localStorage.getItem('cart'));
+        showProd(cart);
+    }
+
+    function showProd(cart){
+       var i = 1;
+       var pop = "₹";
+       var sum = 0;
+       for(var item in cart){
+          name = cart[item][1] ;
+          quantity = cart[item][0] ;
+          price = cart[item][2] ;
+          total = quantity * price ;
+          sum = sum + total;
+          let uiString = `<tr>
+                           <td scope="row">${i}</td>
+                           <td>${name}</td>
+                           <td>₹${price}</td>
+                           <td>${quantity}</td>
+                           <td>₹${total}</td>
+                          </tr>`;
+          document.getElementById("tableBody").innerHTML += uiString;
+          i = i+1;
+       }
+       popSum = pop + sum;
+       document.getElementById('total').innerHTML = popSum;
+    }
+
+    let clear = document.getElementById('clear');
+    clear.addEventListener("click", myFunction);
+    function myFunction(){
+      cart = JSON.parse(localStorage.getItem('cart'));
+      localStorage.clear();
+      cart = {};
+      showProd(cart);
+    }
+
+</script>
+{% endblock %}
+
+<!--SO BY THIS WE ARE WORKING WITH DRY PRINCIPLE - DO NOT REPEAT YOURSELF-->
+<!--AND SAVES TIME, EFFORT, MEMORY-->
